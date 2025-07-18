@@ -67,7 +67,7 @@
     <h2>
         Let us know before 
     </h2>
-   <form action="#" method="post" style="
+   <form id="myForm" action="#" method="post" style="
   background-color: rgba(255, 255, 255, 0.1);
   padding: 30px;
   border-radius: 20px;
@@ -79,7 +79,7 @@
   box-shadow: 0 0 10px rgba(255,255,255,0.2);
 ">
   <h3 style="margin-bottom: 5px;">Full Name:</h3>
-  <input type="text" name="fullname" style="
+  <input type="text" name="fullname" id="fullname" style="
     width: 100%;
     padding: 8px;
     border-radius: 10px;
@@ -89,7 +89,7 @@
   ">
 
   <h3 style="margin-bottom: 5px;">Number of Guests:</h3>
-  <select name="guests" style="
+  <select id="myDropdown" name="guests" style="
     width: 100%;
     padding: 8px;
     border-radius: 10px;
@@ -102,6 +102,28 @@
     <option>3</option>
   </select>
 
+  <script>
+    const myNumber = localStorage.getItem("myNumber");
+    // Ensure it is a valid number before populating
+if (myNumber !== null && !isNaN(myNumber)) {
+    const dropdown = document.getElementById("myDropdown");
+    const count = parseInt(myNumber, 10);
+
+    // Clear existing options
+    dropdown.innerHTML = "";
+
+    // Create and append options dynamically
+    for (let i = 1; i <= count; i++) {
+        const option = document.createElement("option");
+        option.value = i;
+        option.textContent = `${i}`;
+        dropdown.appendChild(option);
+    }
+} else {
+    console.log("No valid 'myNumber' in localStorage.");
+}
+  </script>
+
   <h3 style="margin-bottom: 5px;">Will you be attending?</h3>
   <label style="margin-right: 15px;">
     <input type="radio" name="choice" value="yes" checked>
@@ -113,7 +135,7 @@
   </label>
 
   <br><br>
-  <button type="submit" style="
+  <button id="submit" name="submit" type="submit" style="
     padding: 10px 20px;
     border: none;
     border-radius: 10px;
@@ -123,7 +145,43 @@
     cursor: pointer;
   ">Submit</button>
 </form>
+<script>
+  // Handle form submission
+document.getElementById("myForm").addEventListener("submit", function(e) {
+    e.preventDefault(); // Prevent page reload
 
+    const selectedValue = document.getElementById("myDropdown").value;
+    const fullname = document.getElementById("fullname").value; 
+    let id="1Z1MsBKi_hni_FHLCJPJFEcH1oTTG-sbQoQmd786pU4Q";
+    const data = {
+      method:"addEntry",
+        e:id,
+        name:fullname,
+        numberOfParticipants: selectedValue
+    };
+
+
+    fetch("https://script.google.com/macros/s/AKfycby8t6z9AYmFOOlv4fw_BNZPsRLFrCqultvxFQ0w9Ki2p_uQa2QBZBecdh86W1utzKsJKg/exec", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => {
+        if (!response.ok) throw new Error("Network response was not ok");
+        return response.json(); // or .text() if your API returns plain text
+    })
+    .then(result => {
+        console.log("Success:", result);
+        // Optionally display a success message
+    })
+    .catch(error => {
+        console.error("Error:", error);
+        // Optionally display an error message
+    });
+});
+</script>
   </div>
   
 
