@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wedding</title>
+  <style>
+    
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background-image: url("images/IMG_7904.jpg");
+      background-color: #cccccc;
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .container {
+      margin-top: 200px;
+      text-align: center;
+    }
+
+    h1, h2 {
+      color: white;
+      font-family: 'Lucida Handwriting', cursive;
+      text-shadow: 2px 2px grey;
+    }
+
+    h1 {
+      font-size: 50px;
+    }
+
+    h2 {
+      font-size: 30px;
+    }
+
+    .swipe-text {
+      margin-bottom: 40px;
+      font-size: 22px;
+      color: white;
+      text-shadow: 1px 1px gray;
+      font-family: 'Lucida Handwriting', cursive;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .swipe-text:hover {
+      color: grey;
+    }
+
+    #countdown {
+      color: white;
+      font-family: 'Lucida Handwriting', cursive;
+      text-shadow: 1px 1px gray;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>
+      David<br>
+      &nbsp;&amp;<br>
+      Mirna
+    </h1>
+    <h2>Are Getting Married</h2>
+    <div id="countdown" style="color: white; font-family: 'Lucida Handwriting', cursive; text-shadow: 1px 1px gray; margin-top: 20px;"></div>
+
+  </div>
+
+  <div class="swipe-text" id="swipeZone" style="font-family: Cascadia Mono SemiBold">
+  Swipe left <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;<-
+  </div>
+
+  <script>
+    let startX = 0;
+    let endX = 0;
+
+    const swipeZone = document.getElementById('swipeZone');
+
+    // Swipe: Touch start
+    swipeZone.addEventListener('touchstart', function (e) {
+      startX = e.touches[0].clientX;
+    });
+
+    // Swipe: Touch end
+    swipeZone.addEventListener('touchend', function (e) {
+      endX = e.changedTouches[0].clientX;
+      handleSwipe();
+    });
+
+    // Click: Navigate right
+    swipeZone.addEventListener('click', function () {
+      window.location.href = "page3.html"; // You can change to home.html if needed
+    });
+
+    function handleSwipe() {
+      const threshold = 50;
+      const distance = endX - startX;
+
+      if (distance > threshold) {
+        // Swipe right
+        window.location.href = "home.html";
+      } else if (distance < -threshold) {
+        // Swipe left
+        window.location.href = "page3.html";
+      }
+    }
+    function updateCountdown() {
+      const weddingDate = new Date("August 23, 2025 18:00:00").getTime();
+      const now = new Date().getTime();
+      const distance = weddingDate - now;
+
+      if (distance < 0) {
+        document.getElementById("countdown").innerHTML = "It's Wedding Time!";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("countdown").innerHTML = `
+        <div style="display: flex; gap: 25px; justify-content: center;">
+          <div style="text-align: center;">
+            <div style="font-size: 36px;">${days} :</div>
+            <div style="font-size: 16px;">Days</div>
+          </div>
+          <div style="text-align: center;">
+            <div style="font-size: 36px;">${hours} :</div>
+            <div style="font-size: 16px;">Hours</div>
+          </div>
+          <div style="text-align: center;">
+            <div style="font-size: 36px;">${minutes} :</div>
+            <div style="font-size: 16px;">Minutes</div>
+          </div>
+          <div style="text-align: center;">
+            <div style="font-size: 36px;">${seconds}</div>
+            <div style="font-size: 16px;">Seconds</div>
+          </div>
+        </div>
+      `;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+</body>
+</html>

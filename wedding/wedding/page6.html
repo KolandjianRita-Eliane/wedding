@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wedding</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background-image: url("images/5a186f09-1e4f-4ab2-bec5-8b18d6552907.JPG");
+      background-color: #cccccc;
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .container {
+      margin-top: 400;
+      text-align: center;
+    }
+
+    h1, h2 {
+      color: white;
+      
+      text-shadow: 2px 2px grey;
+    }
+
+    h1 {
+      font-size: 50px;
+      font-family: 'Lucida Handwriting', cursive;
+    }
+
+    h2 {
+      font-family:Verdana, Geneva, Tahoma, sans-serif;
+      font-size: 25px;
+      text-shadow: 1px 1px gray;
+    }
+    h3{
+      color:white;
+      font-size: 30px;
+      text-shadow: 1px 1px gray;
+    }
+
+    .swipe-text {
+      margin-bottom: 40px;
+      font-size: 22px;
+      color: white;
+      text-shadow: 1px 1px gray;
+      font-family: 'Lucida Handwriting', cursive;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .swipe-text:hover {
+      color: grey;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Be&nbsp;Our&nbsp;Guest</h1>
+    <h2>
+        Let us know before 
+    </h2>
+   <form action="#" method="post" style="
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 30px;
+  border-radius: 20px;
+  backdrop-filter: blur(6px);
+  max-width: 400px;
+  margin: 20px auto;
+  color: white;
+  font-family: 'Lucida Handwriting', cursive;
+  box-shadow: 0 0 10px rgba(255,255,255,0.2);
+">
+  <h3 style="margin-bottom: 5px;">Full Name:</h3>
+  <input type="text" name="fullname" style="
+    width: 100%;
+    padding: 8px;
+    border-radius: 10px;
+    border: none;
+    margin-bottom: 15px;
+    font-family: inherit;
+  ">
+
+  <h3 style="margin-bottom: 5px;">Number of Guests:</h3>
+  <select name="guests" style="
+    width: 100%;
+    padding: 8px;
+    border-radius: 10px;
+    border: none;
+    margin-bottom: 15px;
+    font-family: inherit;
+  ">
+    <option>1</option>
+    <option>2</option>
+    <option>3</option>
+  </select>
+
+  <h3 style="margin-bottom: 5px;">Will you be attending?</h3>
+  <label style="margin-right: 15px;">
+    <input type="radio" name="choice" value="yes" checked>
+    Yes
+  </label>
+  <label>
+    <input type="radio" name="choice" value="no">
+    No
+  </label>
+
+  <br><br>
+  <button type="submit" style="
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    background-color: white;
+    color: black;
+    font-family: inherit;
+    cursor: pointer;
+  ">Submit</button>
+</form>
+
+  </div>
+  
+
+  <div class="swipe-text" id="swipeZone" style="font-family: Cascadia Mono SemiBold">
+  Swipe left <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;<-
+  </div>
+
+
+  <script>
+    let startX = 0;
+    let endX = 0;
+
+    const swipeZone = document.getElementById('swipeZone');
+
+    // Swipe: Touch start
+    swipeZone.addEventListener('touchstart', function (e) {
+      startX = e.touches[0].clientX;
+    });
+
+    // Swipe: Touch end
+    swipeZone.addEventListener('touchend', function (e) {
+      endX = e.changedTouches[0].clientX;
+      handleSwipe();
+    });
+
+    // Click: Navigate right
+    swipeZone.addEventListener('click', function () {
+      window.location.href = "page5.html"; // You can change to home.html if needed
+    });
+
+    function handleSwipe() {
+      const threshold = 50;
+      const distance = endX - startX;
+
+      if (distance > threshold) {
+        // Swipe right
+        window.location.href = "page3.html";
+      } else if (distance < -threshold) {
+        // Swipe left
+        window.location.href = "page5.html";
+      }
+    }
+  </script>
+</body>
+</html>
