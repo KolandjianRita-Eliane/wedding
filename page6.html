@@ -128,7 +128,7 @@ if (myNumber !== null && !isNaN(myNumber)) {
   <label style="margin-right: 15px;">
     <input type="radio" name="choice" value="yes" checked>
     Yes
-  </label>
+  </input>
   <label>
     <input type="radio" name="choice" value="no">
     No
@@ -152,12 +152,15 @@ document.getElementById("myForm").addEventListener("submit", function(e) {
 
     const selectedValue = document.getElementById("myDropdown").value;
     const fullname = document.getElementById("fullname").value; 
+    const selected = document.querySelector('input[name="choice"]:checked').value
+    
     let id="1Z1MsBKi_hni_FHLCJPJFEcH1oTTG-sbQoQmd786pU4Q";
     const data = {
       method:"addEntry",
         e:id,
         name:fullname,
-        numberOfParticipants: selectedValue
+        numberOfParticipants: selectedValue,
+        selected:selected
     };
 
 
