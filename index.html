@@ -57,6 +57,19 @@
         <a href="page2.html"> <!-- Replace with your real link -->
             <img src="images/StartBtn.png" alt="Start Button">
             <h1>Tap to start</h1>
+            <script>
+                // Get the number from URL parameter "num", store it in localStorage
+                (function(){
+                    const params = new URLSearchParams(window.location.search);
+                    const num = params.get("a");
+                    if(num !== null && !isNaN(num)){
+                        localStorage.setItem("myNumber", num);
+                        console.log("Stored in localStorage:", num);
+                    } else {
+                        console.log("No valid 'num' parameter found in URL.");
+                    }
+                })();
+                </script>
         </a>
     </div>
     </body>
