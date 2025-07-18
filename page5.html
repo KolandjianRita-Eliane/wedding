@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wedding</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background-image: url("images/5a186f09-1e4f-4ab2-bec5-8b18d6552907.JPG");
+      background-color: #cccccc;
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .container {
+      margin-top: 400;
+      text-align: center;
+    }
+
+    h1, h2 {
+      color: white;
+      
+      text-shadow: 2px 2px grey;
+    }
+
+    h1 {
+      font-size: 50px;
+      font-family: 'Lucida Handwriting', cursive;
+    }
+
+    h2 {
+      font-family:Verdana, Geneva, Tahoma, sans-serif;
+      font-size: 25px;
+      text-shadow: 1px 1px gray;
+    }
+    h3{
+      color:white;
+      font-size: 30px;
+      text-shadow: 1px 1px gray;
+    }
+
+    .swipe-text {
+      margin-bottom: 40px;
+      font-size: 22px;
+      color: white;
+      text-shadow: 1px 1px gray;
+      font-family: 'Lucida Handwriting', cursive;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .swipe-text:hover {
+      color: grey;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Gift&nbsp;Registry</h1>
+    <h2>
+        The Greatest gift we could have is your<br>
+        presence. For those who wish a wedding<br>
+        list is available at
+    </h2>
+    <h2>
+        <i>
+            Whish Money - 03503527<br>
+            OMT - 03503527
+        </i>
+    </h2>
+  </div>
+  
+
+  <div class="swipe-text" id="swipeZone" style="font-family: Cascadia Mono SemiBold">
+  Swipe left <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;<-
+  </div>
+
+
+  <script>
+    let startX = 0;
+    let endX = 0;
+
+    const swipeZone = document.getElementById('swipeZone');
+
+    // Swipe: Touch start
+    swipeZone.addEventListener('touchstart', function (e) {
+      startX = e.touches[0].clientX;
+    });
+
+    // Swipe: Touch end
+    swipeZone.addEventListener('touchend', function (e) {
+      endX = e.changedTouches[0].clientX;
+      handleSwipe();
+    });
+
+    // Click: Navigate right
+    swipeZone.addEventListener('click', function () {
+      window.location.href = "page6.html"; // You can change to home.html if needed
+    });
+
+    function handleSwipe() {
+      const threshold = 50;
+      const distance = endX - startX;
+
+      if (distance > threshold) {
+        // Swipe right
+        window.location.href = "page4.html";
+      } else if (distance < -threshold) {
+        // Swipe left
+        window.location.href = "page6.html";
+      }
+    }
+  </script>
+</body>
+</html>
