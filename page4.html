@@ -5,22 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Wedding</title>
   <style>
-    body {
-      margin: 0;
-      padding: 0;
-      height: 100vh;
-      background-image: url("images/5a186f09-1e4f-4ab2-bec5-8b18d6552907.JPG");
-      background-color: #cccccc;
-      background-size: cover;
-      background-position: center;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: center;
-    }
+    img {
+  max-height: 100%;
+  max-width: 100%;
+}
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100svh;
+  overflow: hidden;
+  font-family: 'Lucida Handwriting', cursive;
+  background-image: url("images/5a186f09-1e4f-4ab2-bec5-8b18d6552907.JPG");
+  background-color: #cccccc;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+}
 
     .container {
       margin-top: 400;
+            flex: 1; 
       text-align: center;
     }
 
@@ -75,8 +84,6 @@
 <body>
   <div class="container">
     <h1>The Celebration</h1>
-    <br>
-    <br>
     <h2 style="margin-bottom: 5px;"><i>Wedding Ceremony</i><br>
         Our Lady of Noorieh Monastery - Hamat
     </h2>
@@ -97,7 +104,7 @@
   </a><br>
   06:00 PM
 </h3>
-<br><br>
+
     <h2  style="margin-bottom: 5px;"><i>Wedding Party</i><br>
     Byblos Palace - Jbeil</h2>
     <h3 style="margin-top: 0; text-align: center;">
