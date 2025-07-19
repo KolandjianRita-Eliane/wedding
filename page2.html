@@ -49,7 +49,53 @@ img {
     h2 {
       font-size: 30px;
     }
+ .swipe-container {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    touch-action: pan-y;
+  }
+  .swipe-content {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.3s ease;
+    will-change: transform;
+  }
 
+  .swipe-text {
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Cascadia Mono SemiBold', monospace;
+    font-size: 22px;
+    color: white;
+    text-shadow: 1px 1px gray;
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    animation: pulse 2s infinite;
+  }
+
+  .swipe-text .arrow {
+    font-size: 26px;
+    animation: moveArrow 1.5s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+  }
+
+  @keyframes moveArrow {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(-10px); }
+  }
+  <!--
     .swipe-text {
       margin-bottom: 40px;
       font-size: 22px;
@@ -63,7 +109,7 @@ img {
     .swipe-text:hover {
       color: grey;
     }
-
+-->
     #countdown {
       color: white;
       font-family: 'Lucida Handwriting', cursive;
@@ -84,6 +130,8 @@ img {
   </style>
 </head>
 <body>
+  <div class="swipe-container" id="swipeContainer">
+  <div class="swipe-content" id="swipeContent">
   <div class="container">
     <h1>
       David<br>
@@ -92,14 +140,13 @@ img {
     </h1>
     <h2>Are Getting Married</h2>
     <div id="countdown" style="color: white; font-family: 'Lucida Handwriting', cursive; text-shadow: 1px 1px gray; margin-top: 20px;"></div>
-
+</div>
   </div>
 
   <div class="swipe-text" id="swipeZone" style="font-family: Cascadia Mono SemiBold">
-  Swipe left <br>
-  &nbsp;&nbsp;&nbsp;&nbsp;<-
+  Swipe left<br><span class="arrow">←</span>
   </div>
-
+</div>
   <script>
       let startX = 0;
   let endX = 0;
