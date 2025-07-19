@@ -93,7 +93,7 @@
     <h2 style="margin-top: 2px;">
         Let us know before 
     </h2>
-   <form id="myForm" action="#" method="post" style="
+   <form id="myForm" action="thankYou.html" method="post" style="
   background-color: rgba(255, 255, 255, 0.1);
   padding: 18px;
   border-radius: 15px;
@@ -194,30 +194,10 @@ document.getElementById("myForm").addEventListener("submit", function(e) {
         numberOfParticipants: selectedValue,
         selected:selected
     };
-    
-    fetch("https://script.google.com/macros/s/AKfycby8t6z9AYmFOOlv4fw_BNZPsRLFrCqultvxFQ0w9Ki2p_uQa2QBZBecdh86W1utzKsJKg/exec", {
-    method: 'POST',
-    headers: {
-        "Content-Type": "application/json"
-    },
-    body: JSON.stringify(data),
-})
-.then(response => response.json())
-.then(result => {
-    if (result.status === "success") {
-        window.location.href = "thankYou.html";
-    } else {
-        alert("Error: " + result.message);
-    }
-})
-.catch(error => {
-    alert("Submission failed. Try again later.");
-    console.error(error);
-});
-/*
+
 
     fetch("https://script.google.com/macros/s/AKfycby8t6z9AYmFOOlv4fw_BNZPsRLFrCqultvxFQ0w9Ki2p_uQa2QBZBecdh86W1utzKsJKg/exec", {
-      //mode: 'no-cors',
+      mode: 'no-cors',
         method: 'POST',
      
         headers: {
@@ -226,9 +206,8 @@ document.getElementById("myForm").addEventListener("submit", function(e) {
         body: JSON.stringify(data),
         
         
-    });
-    window.location.href = "thankYou.html";*/
-   /* .then(response => {
+    })
+    .then(response => {
         if (!response.ok) throw new Error("Network response was not ok");
         return response.json(); // or .text() if your API returns plain text
     })
@@ -240,7 +219,7 @@ document.getElementById("myForm").addEventListener("submit", function(e) {
     .catch(error => {
        // console.error("Error:", error);
         // Optionally display an error message
-    });*/
+    });
 });
 </script>
   </div>
