@@ -166,6 +166,30 @@ if (myNumber !== null && !isNaN(myNumber)) {
   ">Submit</button>
 </form>
 <script>
+  let startX = 0;
+  let endX = 0;
+
+  // Listen on the entire body for better user experience
+  document.body.addEventListener('touchstart', function (e) {
+    startX = e.touches[0].clientX;
+  });
+
+  document.body.addEventListener('touchend', function (e) {
+    endX = e.changedTouches[0].clientX;
+    handleSwipe();
+  });
+
+  function handleSwipe() {
+    const threshold = 50;
+    const distance = endX - startX;
+
+    if (distance > threshold) {
+      // Swipe right
+      window.location.href = "page5.html";
+    } 
+  }
+  </script>
+<script>
   // Handle form submission
 document.getElementById("myForm").addEventListener("submit", function(e) {
     e.preventDefault(); // Prevent page reload
@@ -224,30 +248,7 @@ document.getElementById("myForm").addEventListener("submit", function(e) {
   </div>
 -->
 <!--
-  <script>
-  let startX = 0;
-  let endX = 0;
-
-  // Listen on the entire body for better user experience
-  document.body.addEventListener('touchstart', function (e) {
-    startX = e.touches[0].clientX;
-  });
-
-  document.body.addEventListener('touchend', function (e) {
-    endX = e.changedTouches[0].clientX;
-    handleSwipe();
-  });
-
-  function handleSwipe() {
-    const threshold = 50;
-    const distance = endX - startX;
-
-    if (distance > threshold) {
-      // Swipe right
-      window.location.href = "page5.html";
-    } 
-  }
-  </script>-->
+  -->
   <!--
   <button class="audio-btn" onclick="toggleAudio(this)">⏸️</button>
 
