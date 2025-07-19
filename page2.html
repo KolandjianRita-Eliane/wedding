@@ -144,41 +144,74 @@
     setInterval(updateCountdown, 1000);
     updateCountdown();
   </script>
-  <audio id="weddingMusic" loop muted>
-  <source src="audio/thousandyears.mp3" type="audio/mpeg">
-</audio>
+<audio id="bg-music" src="audio/thousandyears.mp3" loop></audio>
 
+<button id="music-toggle" 
+        style="
+          position: fixed;
+          bottom: 20px;
+          left: 20px;
+          background: rgba(0,0,0,0.5);
+          border: none;
+          border-radius: 50%;
+          width: 40px;
+          height: 40px;
+          color: white;
+          font-size: 24px;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          user-select: none;
+          z-index: 9999;
+        " 
+        aria-label="Toggle music">
+  &#10074;&#10074; <!-- pause symbol -->
+</button>
 <script>
-  const audio = document.getElementById("weddingMusic");
-  const musicStarted = localStorage.getItem("musicStarted");
-  const lastTime = localStorage.getItem("musicTime");
+  const audio = document.getElementById("bg-music");
+  const btn = document.getElementById("music-toggle");
 
-  if (lastTime) {
-    audio.currentTime = parseFloat(lastTime);
-  }
+  // Load saved music state (playing or paused)
+  let musicState = localStorage.getItem("musicState") || "playing";
 
-  function tryPlayMusic() {
-    if (musicStarted === "true") {
-      audio.muted = false;
-      audio.play().then(() => {
-        console.log("Music resumed");
-      }).catch(err => {
-        console.log("Music blocked, waiting for user gesture");
-      });
+  // Function to update button icon
+  function updateButton() {
+    if(audio.paused){
+      btn.innerHTML = "&#9658;"; // play symbol ►
+    } else {
+      btn.innerHTML = "&#10074;&#10074;"; // pause symbol ‖
     }
   }
 
-  // Try once right away
-  tryPlayMusic();
+  // Initialize audio play/pause according to saved state
+  if(musicState === "playing"){
+    audio.play().catch(() => {
+      // Autoplay might fail, user needs interaction
+      console.log("Autoplay prevented, user interaction needed.");
+      // Show play icon to indicate paused state
+      audio.pause();
+      musicState = "paused";
+      localStorage.setItem("musicState", musicState);
+    });
+  } else {
+    audio.pause();
+  }
+  updateButton();
 
-  // As fallback, listen for first user tap
-  document.body.addEventListener("click", tryPlayMusic, { once: true });
-
-  // Save music time when leaving page
-  window.addEventListener("beforeunload", () => {
-    localStorage.setItem("musicTime", audio.currentTime);
+  btn.addEventListener("click", () => {
+    if(audio.paused){
+      audio.play();
+      musicState = "playing";
+    } else {
+      audio.pause();
+      musicState = "paused";
+    }
+    localStorage.setItem("musicState", musicState);
+    updateButton();
   });
 </script>
+
 
 </body>
 </html>

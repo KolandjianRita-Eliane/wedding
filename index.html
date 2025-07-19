@@ -54,14 +54,34 @@
 </head>
 <body>
     <div class="container">  
-        <a href="page2.html"> <!-- Replace with your real link -->
+        <a href="page2.html" id="start-link" > <!-- Replace with your real link -->
             <img src="images/StartBtn.png" alt="Start Button">
             <h1>Tap to start</h1>
+            </a>
+            
+    </div>
+            <audio id="bg-music" src="audio/thousandyears.mp3" loop></audio>
             <script>
+     const link = document.getElementById("start-link");
+        const audio = document.getElementById("bg-music");
+
+        link.addEventListener("click", function(event) {
+             // Prevent immediate navigation
+
+            audio.play().then(() => {
+                localStorage.setItem("musicPlaying", "true");
+                // After audio starts, navigate to next page
+                window.location.href = link.href;
+            }).catch(error => {
+                // If autoplay blocked or error, just navigate
+                window.location.href = link.href;
+            });
+        });
+    // Your existing URL param storage code here...
                 // Get the number from URL parameter "num", store it in localStorage
                 (function(){
                     const params = new URLSearchParams(window.location.search);
-                    const num = params.get("a");
+                    const num = params.get("a");            
                     if(num !== null && !isNaN(num)){
                         localStorage.setItem("myNumber", num);
                         console.log("Stored in localStorage:", num);
@@ -70,51 +90,10 @@
                     }
                 })();
                 </script>
-        </a>
-    </div>
-    <audio id="weddingMusic" loop muted>
-  <source src="audio/thousandyears.mp3" type="audio/mpeg">
-</audio>
-<button onclick="startMusic()" id="playMusicBtn" style="
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  font-size: 18px;
-  padding: 10px;
-  border: none;
-  background-color: white;
-  color: black;
-  border-radius: 8px;
-  cursor: pointer;
-  z-index: 1000;
-">
-  🎵 Play Music
-</button>
-
-<script>
-  const audio = document.getElementById("weddingMusic");
-
-  function startMusic() {
-  const audio = document.getElementById("weddingMusic");
-  audio.muted = false;
-  audio.play().then(() => {
-    localStorage.setItem("musicStarted", "true");
-    document.getElementById("playMusicBtn").style.display = "none";
-  });
-}
+    
 
 
-  // Resume from last time
-  const lastTime = localStorage.getItem("musicTime");
-  if (lastTime) {
-    audio.currentTime = parseFloat(lastTime);
-  }
 
-  // Save time before navigating away
-  window.addEventListener("beforeunload", () => {
-    localStorage.setItem("musicTime", audio.currentTime);
-  });
-</script>
     </body>
 
 </html>
