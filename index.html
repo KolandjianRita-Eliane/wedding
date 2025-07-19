@@ -60,7 +60,16 @@
             </a>
             
     </div>
-    <script src="audioControl.js"></script>
+    <audio id="backgroundMusic" loop>
+  <source src="audio/thousandyears.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+    <script src="audioControl.js">
+        document.getElementById("startBtn").addEventListener("click", function() {
+    const music = document.getElementById("backgroundMusic");
+    music.play().catch(err => console.log("Play failed:", err));
+});
+    </script>
             
             <script>
              

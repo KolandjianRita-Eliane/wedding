@@ -93,8 +93,14 @@ function handleSwipe() {
 }
   </script>
  <button class="audio-btn" onclick="toggleAudio(this)">⏸️</button>
+ 
 
-  <script src="audioControl.js"></script>
+  <script src="audioControl.js">
+    document.getElementById("startBtn").addEventListener("click", function() {
+    const music = document.getElementById("backgroundMusic");
+    music.play().catch(err => console.log("Play failed:", err));
+});
+  </script>
 
 
 </body>
