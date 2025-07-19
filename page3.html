@@ -5,23 +5,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Wedding</title>
   <style>
-    body {
-      margin: 0;
-      padding: 0;
-      height: 100vh;
-      background-image: url("images/5a186f09-1e4f-4ab2-bec5-8b18d6552907.JPG");
-      background-color: #cccccc;
-      background-size: cover;
-      background-position: center;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .container {
-      margin-top: 400;
-      text-align: center;
+        
+img {
+  max-height: 100%;
+  max-width: 100%;
+}
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100svh;
+  overflow: hidden;
+  font-family: 'Lucida Handwriting', cursive;
+  background-image: url("images/5a186f09-1e4f-4ab2-bec5-8b18d6552907.JPG");
+  background-color: #cccccc;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+}
+    
+     .container {
+      flex: 1; /* fills available vertical space */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
     }
 
     h1, h2 {
@@ -41,7 +53,7 @@
     }
     h3{
       color:white;
-      font-size: 30px;
+      font-size:17px;
       text-shadow: 1px 1px gray;
     }
 
