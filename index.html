@@ -54,29 +54,16 @@
 </head>
 <body>
     <div class="container">  
-        <a href="page2.html" id="start-link" > <!-- Replace with your real link -->
+        <a href="page2.html" id="start-link" onclick="playAudioAndRedirect('page2.html')"> <!-- Replace with your real link -->
             <img src="images/StartBtn.png" alt="Start Button">
             <h1>Tap to start</h1>
             </a>
             
     </div>
-            <audio id="bg-music" src="audio/thousandyears.mp3" loop></audio>
+    <script src="audioControl.js"></script>
+            
             <script>
-     const link = document.getElementById("start-link");
-        const audio = document.getElementById("bg-music");
-
-        link.addEventListener("click", function(event) {
-             // Prevent immediate navigation
-
-            audio.play().then(() => {
-                localStorage.setItem("musicPlaying", "true");
-                // After audio starts, navigate to next page
-                window.location.href = link.href;
-            }).catch(error => {
-                // If autoplay blocked or error, just navigate
-                window.location.href = link.href;
-            });
-        });
+             
     // Your existing URL param storage code here...
                 // Get the number from URL parameter "num", store it in localStorage
                 (function(){

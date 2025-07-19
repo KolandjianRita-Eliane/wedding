@@ -58,23 +58,16 @@
     .swipe-text:hover {
       color: grey;
     }
-     #music-toggle {
+    .audio-btn {
       position: fixed;
       bottom: 20px;
       left: 20px;
-      background: rgba(0, 0, 0, 0.5);
-      border: none;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      color: white;
       font-size: 24px;
+      background: rgba(255, 255, 255, 0.7);
+      border: none;
+      padding: 10px;
+      border-radius: 50%;
       cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      user-select: none;
-      z-index: 9999;
     }
   </style>
 </head>
@@ -137,63 +130,9 @@
     }
   }
   </script>
- <!-- Background music audio element -->
-  <audio id="bg-music" src="audio/thousandyears.mp3" loop preload="auto"></audio>
+ <button class="audio-btn" onclick="toggleAudio(this)">⏸️</button>
 
-  <!-- Music toggle button -->
-  <button id="music-toggle" aria-label="Toggle music">&#10074;&#10074;</button>
-
-  <script>
-    const audio = document.getElementById("bg-music");
-    const btn = document.getElementById("music-toggle");
-
-    // Load music playing flag and music state from localStorage
-    const musicPlayingFlag = localStorage.getItem("musicPlaying");
-    let musicState = localStorage.getItem("musicState") || "playing";
-
-    // If music was started from page 1 (flag true), try to play it here
-    if (musicPlayingFlag === "true") {
-      if (musicState === "playing") {
-        audio.play().catch(() => {
-          // Autoplay might fail if no user interaction yet
-          console.log("Autoplay prevented on page 3.");
-          musicState = "paused";
-          localStorage.setItem("musicState", musicState);
-        });
-      } else {
-        audio.pause();
-      }
-    }
-
-    // Update toggle button icon based on audio state
-    function updateButton() {
-      if (audio.paused) {
-        btn.innerHTML = "&#9658;"; // play symbol ►
-      } else {
-        btn.innerHTML = "&#10074;&#10074;"; // pause symbol ‖
-      }
-    }
-
-    // Initial button update
-    updateButton();
-
-    // Toggle play/pause when button clicked
-    btn.addEventListener("click", () => {
-      if (audio.paused) {
-        audio.play();
-        musicState = "playing";
-      } else {
-        audio.pause();
-        musicState = "paused";
-      }
-      localStorage.setItem("musicState", musicState);
-      updateButton();
-    });
-
-    // Optional: update button icon if user manually pauses/plays audio
-    audio.addEventListener("play", updateButton);
-    audio.addEventListener("pause", updateButton);
-  </script>
+  <script src="audioControl.js"></script>
 
 </body>
 </html>
