@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Thank You!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background-image: url("images/5a186f09-1e4f-4ab2-bec5-8b18d6552907.JPG"); /* Use any soft background */
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      font-family: 'Lucida Handwriting', cursive;
+      color: white;
+      text-shadow: 1px 1px gray;
+    }
+
+    h1 {
+      font-size: 50px;
+    }
+
+    p {
+      font-size: 24px;
+      margin-top: 20px;
+    }
+        .swipe-text {
+      margin-bottom: 40px;
+      font-size: 22px;
+      color: white;
+      text-shadow: 1px 1px gray;
+      font-family: 'Lucida Handwriting', cursive;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .swipe-text:hover {
+      color: grey;
+    }
+  </style>
+</head>
+<body>
+  <h1>Thank You!</h1>
+  <p>We’ve received your RSVP 💌</p>
+  <p>We can't wait to celebrate with you!</p> 
+  <br>
+  <br>
+  <br>
+
+    <div class="swipe-text" id="swipeZone" style="font-family: Cascadia Mono SemiBold">
+  Swipe <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;<-
+  </div>
+  <script>
+    let startX = 0;
+let endX = 0;
+
+// Listen on the entire body for better user experience
+document.body.addEventListener('touchstart', function (e) {
+  startX = e.touches[0].clientX;
+});
+
+document.body.addEventListener('touchend', function (e) {
+  endX = e.changedTouches[0].clientX;
+  handleSwipe();
+});
+
+function handleSwipe() {
+  const threshold = 50;
+  const distance = endX - startX;
+
+  if (distance > threshold) {
+    // Swipe right
+    window.location.href = "page6.html"; // Change this to your previous page
+  }
+  // No action on swipe left
+}
+  </script>
+</body>
+</html>
