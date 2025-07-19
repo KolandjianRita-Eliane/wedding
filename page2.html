@@ -2,27 +2,37 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Wedding</title>
   <style>
-    
-    body {
-      margin: 0;
-      padding: 0;
-      height: 100vh;
-      background-image: url("images/IMG_7904.jpg");
-      background-color: #cccccc;
-      background-size: cover;
-      background-position: center;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: center;
-    }
+    html, body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+   /* optional: allow vertical gestures like pull-to-refresh */
+}
+    html, body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  overflow: hidden;
+  font-family: 'Lucida Handwriting', cursive;
+  background-image: url("images/IMG_7904.jpg");
+  background-color: #cccccc;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
 
     .container {
-      margin-top: 200px;
-      text-align: center;
+      flex: 1; /* fills available vertical space */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
     }
 
     h1, h2 {
