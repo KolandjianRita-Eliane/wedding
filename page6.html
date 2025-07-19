@@ -93,7 +93,7 @@
     <h2 style="margin-top: 2px;">
         Let us know before 
     </h2>
-   <form id="myForm" action="thankYou.html" method="post" style="
+   <form id="myForm" action="#" method="post" style="
   background-color: rgba(255, 255, 255, 0.1);
   padding: 18px;
   border-radius: 15px;
@@ -177,7 +177,51 @@ if (myNumber !== null && !isNaN(myNumber)) {
     cursor: pointer;
   ">Submit</button>
 </form>
+<script>
+  // Handle form submission
+document.getElementById("myForm").addEventListener("submit", function(e) {
+    e.preventDefault(); // Prevent page reload
 
+    const selectedValue = document.getElementById("myDropdown").value;
+    const fullname = document.getElementById("fullname").value; 
+    const selected = document.querySelector('input[name="choice"]:checked').value
+    
+    let id="1Z1MsBKi_hni_FHLCJPJFEcH1oTTG-sbQoQmd786pU4Q";
+    const data = {
+      method:"addEntry",
+        e:id,
+        name:fullname,
+        numberOfParticipants: selectedValue,
+        selected:selected
+    };
+
+
+    fetch("https://script.google.com/macros/s/AKfycby8t6z9AYmFOOlv4fw_BNZPsRLFrCqultvxFQ0w9Ki2p_uQa2QBZBecdh86W1utzKsJKg/exec", {
+      //mode: 'no-cors',
+        method: 'POST',
+     body: JSON.stringify(data),
+        headers: {
+            "Content-Type": "application/json"
+        }
+        
+        
+        
+    })
+    .then(response => {
+        if (!response.ok) throw new Error("Network response was not ok");
+        return response.json(); // or .text() if your API returns plain text
+    })
+    .then(result => {
+        console.log("Success:", result);
+        window.location.href = "thankYou.html";
+        // Optionally display a success message
+    })
+    .catch(error => {
+       // console.error("Error:", error);
+        // Optionally display an error message
+    });
+});
+</script>
   </div>
   
   <!--
@@ -217,50 +261,6 @@ if (myNumber !== null && !isNaN(myNumber)) {
 
   <script src="audioControl.js"></script>
 -->
-<script>
-  // Handle form submission
-document.getElementById("myForm").addEventListener("submit", function(e) {
-    e.preventDefault(); // Prevent page reload
 
-    const selectedValue = document.getElementById("myDropdown").value;
-    const fullname = document.getElementById("fullname").value; 
-    const selected = document.querySelector('input[name="choice"]:checked').value
-    
-    let id="1Z1MsBKi_hni_FHLCJPJFEcH1oTTG-sbQoQmd786pU4Q";
-    const data = {
-      method:"addEntry",
-        e:id,
-        name:fullname,
-        numberOfParticipants: selectedValue,
-        selected:selected
-    };
-
-
-    fetch("https://script.google.com/macros/s/AKfycby8t6z9AYmFOOlv4fw_BNZPsRLFrCqultvxFQ0w9Ki2p_uQa2QBZBecdh86W1utzKsJKg/exec", {
-      //mode: 'no-cors',
-        method: 'POST',
-     
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data),
-        
-        
-    })
-    .then(response => {
-        if (!response.ok) throw new Error("Network response was not ok");
-        return response.json(); // or .text() if your API returns plain text
-    })
-    .then(result => {
-        console.log("Success:", result);
-        window.location.href = "thankYou.html";
-        // Optionally display a success message
-    })
-    .catch(error => {
-       // console.error("Error:", error);
-        // Optionally display an error message
-    });
-});
-</script>
 </body>
 </html>
