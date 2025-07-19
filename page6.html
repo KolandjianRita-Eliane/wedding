@@ -5,10 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Wedding</title>
   <style>
-    body {
+     img {
+  max-height: 100%;
+  max-width: 100%;
+}
+    html,body {
+       overflow: hidden;
       margin: 0;
       padding: 0;
-      height: 100vh;
+      height: 100svh;
       background-image: url("images/5a186f09-1e4f-4ab2-bec5-8b18d6552907.JPG");
       background-color: #cccccc;
       background-size: cover;
@@ -17,7 +22,17 @@
       flex-direction: column;
       justify-content: space-between;
       align-items: center;
+        overflow-x: hidden;
+        width:100%;
     }
+    
+
+  @media (max-height: 600px) {
+    form {
+      max-height: 100svh;
+      overflow-y: auto;
+    }
+  }
 
     .container {
       margin-top: 400;
@@ -31,13 +46,13 @@
     }
 
     h1 {
-      font-size: 50px;
+      font-size: 42px;
       font-family: 'Lucida Handwriting', cursive;
     }
 
     h2 {
       font-family:Verdana, Geneva, Tahoma, sans-serif;
-      font-size: 25px;
+      font-size: 22px;
       text-shadow: 1px 1px gray;
     }
     h3{
@@ -74,39 +89,44 @@
 </head>
 <body>
   <div class="container">
-    <h1>Be&nbsp;Our&nbsp;Guest</h1>
-    <h2>
+    <h1 style="margin-bottom: 5px;">Be&nbsp;Our&nbsp;Guest</h1>
+    <h2 style="margin-top: 0px;">
         Let us know before 
     </h2>
-   <form id="myForm" action="#" method="post" style="
+   <form id="myForm" action="thankYou.html" method="post" style="
   background-color: rgba(255, 255, 255, 0.1);
-  padding: 30px;
-  border-radius: 20px;
+  padding: 10px;
+  border-radius: 15px;
   backdrop-filter: blur(6px);
-  max-width: 400px;
-  margin: 20px auto;
+  max-width: 350px;
+  max-height: 445px;
+  margin: 15px auto;
   color: white;
   font-family: 'Lucida Handwriting', cursive;
   box-shadow: 0 0 10px rgba(255,255,255,0.2);
+  margin: 0 auto;
+  box-sizing: border-box;
 ">
   <h3 style="margin-bottom: 5px;">Full Name:</h3>
   <input type="text" name="fullname" id="fullname" style="
     width: 100%;
-    padding: 8px;
-    border-radius: 10px;
+    padding: 5px;
+    border-radius: 8px;
     border: none;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
     font-family: inherit;
+    font-size: 14px;
   ">
 
   <h3 style="margin-bottom: 5px;">Number of Guests:</h3>
   <select id="myDropdown" name="guests" style="
     width: 100%;
-    padding: 8px;
-    border-radius: 10px;
+    padding: 5px;
+    border-radius: 8px;
     border: none;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
     font-family: inherit;
+    font-size: 14px;
   ">
     <option>1</option>
     <option>2</option>
@@ -135,24 +155,25 @@ if (myNumber !== null && !isNaN(myNumber)) {
 }
   </script>
 
-  <h3 style="margin-bottom: 5px;">Will you be attending?</h3>
-  <label style="margin-right: 15px;">
+  <h3 style="margin: 10px 0 5px;">Will you be attending?</h3>
+  <label style="margin-right: 10px; font-size: 14px;">
     <input type="radio" name="choice" value="yes" checked>
     Yes
   </input>
-  <label>
+  <label style="font-size:14px;">
     <input type="radio" name="choice" value="no">
     No
   </label>
 
   <br><br>
   <button id="submit" name="submit" type="submit" style="
-    padding: 10px 20px;
+    padding: 8px 16px;
     border: none;
-    border-radius: 10px;
+    border-radius: 8px;
     background-color: white;
     color: black;
     font-family: inherit;
+    font-size: 14px;
     cursor: pointer;
   ">Submit</button>
 </form>
@@ -190,7 +211,6 @@ document.getElementById("myForm").addEventListener("submit", function(e) {
     })
     .then(result => {
         console.log("Success:", result);
-        header(thankYou.html);
         // Optionally display a success message
     })
     .catch(error => {
