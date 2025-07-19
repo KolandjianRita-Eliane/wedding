@@ -72,6 +72,49 @@
                 </script>
         </a>
     </div>
+    <audio id="weddingMusic" loop muted>
+  <source src="audio/thousandyears.mp3" type="audio/mpeg">
+</audio>
+<button onclick="startMusic()" id="playMusicBtn" style="
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 18px;
+  padding: 10px;
+  border: none;
+  background-color: white;
+  color: black;
+  border-radius: 8px;
+  cursor: pointer;
+  z-index: 1000;
+">
+  🎵 Play Music
+</button>
+
+<script>
+  const audio = document.getElementById("weddingMusic");
+
+  function startMusic() {
+  const audio = document.getElementById("weddingMusic");
+  audio.muted = false;
+  audio.play().then(() => {
+    localStorage.setItem("musicStarted", "true");
+    document.getElementById("playMusicBtn").style.display = "none";
+  });
+}
+
+
+  // Resume from last time
+  const lastTime = localStorage.getItem("musicTime");
+  if (lastTime) {
+    audio.currentTime = parseFloat(lastTime);
+  }
+
+  // Save time before navigating away
+  window.addEventListener("beforeunload", () => {
+    localStorage.setItem("musicTime", audio.currentTime);
+  });
+</script>
     </body>
 
 </html>

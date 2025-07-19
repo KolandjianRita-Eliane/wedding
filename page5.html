@@ -115,5 +115,23 @@
     }
   }
   </script>
+  <audio id="weddingMusic" autoplay loop>
+  <source src="audio/thousandyears.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  const audio = document.getElementById("weddingMusic");
+
+  // Resume from last time
+  const lastTime = localStorage.getItem("musicTime");
+  if (lastTime) {
+    audio.currentTime = parseFloat(lastTime);
+  }
+
+  // Save time before navigating away
+  window.addEventListener("beforeunload", () => {
+    localStorage.setItem("musicTime", audio.currentTime);
+  });
+</script>
 </body>
 </html>

@@ -144,5 +144,41 @@
     setInterval(updateCountdown, 1000);
     updateCountdown();
   </script>
+  <audio id="weddingMusic" loop muted>
+  <source src="audio/thousandyears.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  const audio = document.getElementById("weddingMusic");
+  const musicStarted = localStorage.getItem("musicStarted");
+  const lastTime = localStorage.getItem("musicTime");
+
+  if (lastTime) {
+    audio.currentTime = parseFloat(lastTime);
+  }
+
+  function tryPlayMusic() {
+    if (musicStarted === "true") {
+      audio.muted = false;
+      audio.play().then(() => {
+        console.log("Music resumed");
+      }).catch(err => {
+        console.log("Music blocked, waiting for user gesture");
+      });
+    }
+  }
+
+  // Try once right away
+  tryPlayMusic();
+
+  // As fallback, listen for first user tap
+  document.body.addEventListener("click", tryPlayMusic, { once: true });
+
+  // Save music time when leaving page
+  window.addEventListener("beforeunload", () => {
+    localStorage.setItem("musicTime", audio.currentTime);
+  });
+</script>
+
 </body>
 </html>
