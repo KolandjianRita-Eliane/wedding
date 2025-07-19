@@ -208,6 +208,10 @@ document.getElementById("myForm").addEventListener("submit", function(e) {
         
         
     })
+    .then(() => {
+  // Redirect regardless of response
+  window.location.href = "thankYou.html";
+})
     .then(response => {
         if (!response.ok) throw new Error("Network response was not ok");
         return response.json(); // or .text() if your API returns plain text
