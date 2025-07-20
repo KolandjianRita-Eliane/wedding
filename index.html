@@ -34,16 +34,26 @@
             text-align: center;
             text-decoration: none;
         }
+    img {
+      width: 60vw; /* Bigger size for mobile */
+      max-width: 400px;
+      border-radius: 50px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+img:active {
+    transform: scale(0.95); /* Tap feedback */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+}
+@keyframes pulse {
+    0%   { transform: scale(1); }
+    50%  { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
 
-        img {
-            width: 15%;
-            transition: transform 0.3s;
-        }
-
-        img:hover {
-            transform: scale(1.05);
-        }
-
+img {
+    animation: pulse 2.5s ease-in-out infinite;
+}
         h1 {
             color: white;
             margin-top: 10px;
