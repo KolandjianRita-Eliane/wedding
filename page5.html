@@ -26,11 +26,23 @@ html, body {
   position: fixed;
   width: 100%;
 }
+body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("images/celb.jpeg");
+  background-size: cover;
+  background-position: center;
+  filter: brightness(98%);
+  z-index: -1; /* puts it behind the text */
+}
 
     .container {
       margin-top: 400;
             flex: 1; 
       text-align: center;
+      z-index: 1;
+      color:white;
     }
 
     h1, h2 {

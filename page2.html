@@ -17,6 +17,7 @@ img {
   overflow: hidden;
   font-family: 'Lucida Handwriting', cursive;
   background-image: url("images/second.jpeg");
+  
   background-color: #cccccc;
   background-size: cover;
   background-position: center;
@@ -27,10 +28,22 @@ img {
   position: fixed;
   width: 100%;
 }
+body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("images/second.jpeg");
+  background-size: cover;
+  background-position: center;
+  filter: brightness(60%);
+  z-index: -1; /* puts it behind the text */
+}
 
     .container {
       flex: 1; /* fills available vertical space */
   display: flex;
+  z-index: 1;
+  color:white;
   flex-direction: column;
   justify-content: center;
   text-align: center;
@@ -189,22 +202,22 @@ img {
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
       document.getElementById("countdown").innerHTML = `
-        <div style="display: flex; gap: 25px; justify-content: center;">
+        <div style="display: flex; text-shadow: 2px 2px grey; gap: 25px; justify-content: center;">
           <div style="text-align: center;">
-            <div style="font-size: 36px;">${days} :</div>
-            <div style="font-size: 16px;">Days</div>
+            <div style="font-size: 36px;"><b>${days} :</b></div>
+            <div style="font-size: 16px;"><b>Days</b></div>
           </div>
           <div style="text-align: center;">
-            <div style="font-size: 36px;">${hours} :</div>
-            <div style="font-size: 16px;">Hours</div>
+            <div style="font-size: 36px;"><b>${hours} :</b></div>
+            <div style="font-size: 16px;"><b>Hours</b></div>
           </div>
           <div style="text-align: center;">
-            <div style="font-size: 36px;">${minutes} :</div>
-            <div style="font-size: 16px;">Minutes</div>
+            <div style="font-size: 36px;"><b>${minutes} :</b></div>
+            <div style="font-size: 16px;"><b>Minutes</b></div>
           </div>
           <div style="text-align: center;">
-            <div style="font-size: 36px;">${seconds}</div>
-            <div style="font-size: 16px;">Seconds</div>
+            <div style="font-size: 36px;"><b>${seconds} </b></div>
+            <div style="font-size: 16px;"><b>Seconds</b></div>
           </div>
         </div>
       `;

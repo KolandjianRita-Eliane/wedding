@@ -20,12 +20,23 @@
              width:100%;
              overflow: hidden;
         }
-         
+         body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("images/first.jpeg");
+  background-size: cover;
+  background-position: center;
+  filter: brightness(75%);
+  z-index: -1; /* puts it behind the text */
+}
 
         .container {
             display: flex;
             -webkit-tap-highlight-color: transparent; 
             align-items: center;
+            color:white;
+            z-index: 1;
             margin-bottom: 100px;
             text-decoration: none;
         }

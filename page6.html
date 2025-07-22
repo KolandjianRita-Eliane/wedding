@@ -25,6 +25,16 @@
         overflow-x: hidden;
         width:100%;
     }
+    body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("images/fourth.jpeg");
+  background-size: cover;
+  background-position: center;
+  filter: brightness(60%);
+  z-index: -1; /* puts it behind the text */
+}
     
 
   @media (max-height: 600px) {
@@ -37,6 +47,8 @@
     .container {
       margin-top: 400;
       text-align: center;
+      z-index: 1;
+      color:white;
     }
 
     h1, h2 {
